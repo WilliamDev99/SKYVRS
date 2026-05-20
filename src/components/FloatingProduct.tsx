@@ -43,11 +43,19 @@ export function FloatingProduct({
   const [isCoarse, setIsCoarse] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(pointer: coarse)");
-    setIsCoarse(mq.matches);
-    const onChange = () => setIsCoarse(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
+    const mqC = window.matchMedia("(pointer: coarse)");
+    const mqM = window.matchMedia("(max-width: 640px)");
+    const sync = () => {
+      setIsCoarse(mqC.matches);
+      setIsMobile(mqM.matches);
+    };
+    sync();
+    mqC.addEventListener("change", sync);
+    mqM.addEventListener("change", sync);
+    return () => {
+      mqC.removeEventListener("change", sync);
+      mqM.removeEventListener("change", sync);
+    };
   }, []);
 
   useEffect(() => {
@@ -62,7 +70,9 @@ export function FloatingProduct({
     return () => window.removeEventListener("mousemove", onMove);
   }, [depth, isCoarse]);
 
-  const mw = mobileWidth ?? Math.round(width * 0.6);
+  const mw = mobileWidth ?? Math.round(width * 0.5);
+  const resolvedTop = isMobile && mobileTop ? mobileTop : top;
+  const resolvedLeft = isMobile && mobileLeft ? mobileLeft : left;
 
   return (
     <button
@@ -71,8 +81,8 @@ export function FloatingProduct({
       aria-label={`${name}, ${price}`}
       className="group absolute cursor-pointer rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       style={{
-        top,
-        left,
+        top: resolvedTop,
+        left: resolvedLeft,
         width: `clamp(${mw}px, ${(width / 1440) * 100}vw, ${width}px)`,
         transform: `translate(${tx}px, ${ty}px)`,
         transition: "transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1)",
