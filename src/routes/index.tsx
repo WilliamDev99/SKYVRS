@@ -45,7 +45,10 @@ function Shop() {
           price="IDR 761,000"
           top="22%"
           left="6%"
+          mobileTop="17%"
+          mobileLeft="4%"
           width={180}
+          mobileWidth={92}
           depth={0.4}
           delay={0}
           rotate={-6}
@@ -57,7 +60,10 @@ function Shop() {
           price="IDR 761,000"
           top="14%"
           left="44%"
+          mobileTop="15%"
+          mobileLeft="60%"
           width={170}
+          mobileWidth={92}
           depth={0.6}
           delay={1.2}
           rotate={4}
@@ -69,7 +75,10 @@ function Shop() {
           price="IDR 2,450,000"
           top="32%"
           left="74%"
+          mobileTop="34%"
+          mobileLeft="50%"
           width={280}
+          mobileWidth={140}
           depth={0.5}
           delay={2}
           rotate={-3}
@@ -81,7 +90,10 @@ function Shop() {
           price="IDR 2,450,000"
           top="46%"
           left="32%"
+          mobileTop="48%"
+          mobileLeft="4%"
           width={340}
+          mobileWidth={172}
           depth={0.7}
           delay={0.6}
           rotate={2}
@@ -93,7 +105,10 @@ function Shop() {
           price="IDR 1,890,000"
           top="50%"
           left="66%"
+          mobileTop="72%"
+          mobileLeft="56%"
           width={220}
+          mobileWidth={120}
           depth={0.55}
           delay={1.6}
           rotate={5}
