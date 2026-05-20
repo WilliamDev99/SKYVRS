@@ -8,8 +8,11 @@ interface FloatingProductProps {
   /** top/left as % of viewport */
   top: string;
   left: string;
-  width: number; // px
-  depth?: number; // 0..1, parallax intensity
+  /** desktop width px */
+  width: number;
+  /** mobile width px (defaults to ~60% of width) */
+  mobileWidth?: number;
+  depth?: number;
   delay?: number;
   rotate?: number;
 }
@@ -22,16 +25,27 @@ export function FloatingProduct({
   top,
   left,
   width,
+  mobileWidth,
   depth = 0.5,
   delay = 0,
   rotate = 0,
 }: FloatingProductProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLButtonElement>(null);
   const [tx, setTx] = useState(0);
   const [ty, setTy] = useState(0);
-  const [hover, setHover] = useState(false);
+  const [active, setActive] = useState(false);
+  const [isCoarse, setIsCoarse] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(pointer: coarse)");
+    setIsCoarse(mq.matches);
+    const onChange = () => setIsCoarse(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (isCoarse) return;
     const onMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
@@ -40,27 +54,33 @@ export function FloatingProduct({
     };
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
-  }, [depth]);
+  }, [depth, isCoarse]);
+
+  const mw = mobileWidth ?? Math.round(width * 0.6);
 
   return (
-    <div
+    <button
       ref={ref}
-      className="group absolute cursor-pointer"
+      type="button"
+      aria-label={`${name}, ${price}`}
+      className="group absolute cursor-pointer rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       style={{
         top,
         left,
-        width,
+        width: `clamp(${mw}px, ${(width / 1440) * 100}vw, ${width}px)`,
         transform: `translate(${tx}px, ${ty}px)`,
         transition: "transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1)",
         animation: `float 7s ease-in-out ${delay}s infinite`,
       }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onFocus={() => setActive(true)}
+      onBlur={() => setActive(false)}
     >
       <div
         className="relative"
         style={{
-          transform: `rotate(${rotate}deg) scale(${hover ? 1.06 : 1})`,
+          transform: `rotate(${rotate}deg) scale(${active ? 1.06 : 1})`,
           transition: "transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1)",
           filter:
             "drop-shadow(0 30px 40px oklch(0.15 0.06 255 / 0.45)) drop-shadow(0 8px 12px oklch(0.15 0.06 255 / 0.25))",
@@ -75,17 +95,17 @@ export function FloatingProduct({
         />
       </div>
 
-      {/* Label tooltip on hover */}
       <div
-        className="pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1.5 text-[10px] font-medium tracking-[0.25em] text-foreground/95 backdrop-blur-md"
+        className="pointer-events-none absolute left-1/2 top-full mt-2 max-w-[80vw] -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-1 text-[9px] font-medium tracking-[0.2em] text-foreground/95 backdrop-blur-md sm:mt-3 sm:px-3 sm:py-1.5 sm:text-[10px] sm:tracking-[0.25em]"
         style={{
           background:
             "linear-gradient(180deg, oklch(1 0 0 / 0.25) 0%, oklch(1 0 0 / 0.08) 100%)",
           boxShadow: "inset 0 1px 0 oklch(1 0 0 / 0.35)",
-          opacity: hover ? 1 : 0,
-          transform: `translate(-50%, ${hover ? "0" : "-4px"})`,
+          opacity: active ? 1 : 0,
+          transform: `translate(-50%, ${active ? "0" : "-4px"})`,
           transition: "opacity 300ms ease, transform 300ms ease",
         }}
+        aria-hidden
       >
         {name} · {price}
       </div>
@@ -95,7 +115,10 @@ export function FloatingProduct({
           0%, 100% { translate: 0 0; }
           50% { translate: 0 -14px; }
         }
+        @media (prefers-reduced-motion: reduce) {
+          .group { animation: none !important; }
+        }
       `}</style>
-    </div>
+    </button>
   );
 }
