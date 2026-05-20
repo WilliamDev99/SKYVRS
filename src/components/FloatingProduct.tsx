@@ -5,12 +5,15 @@ interface FloatingProductProps {
   alt: string;
   name: string;
   price: string;
-  /** top/left as % of viewport */
+  /** top/left as % of viewport (desktop) */
   top: string;
   left: string;
+  /** mobile-specific top/left overrides (<=640px) */
+  mobileTop?: string;
+  mobileLeft?: string;
   /** desktop width px */
   width: number;
-  /** mobile width px (defaults to ~60% of width) */
+  /** mobile width px (defaults to ~50% of width) */
   mobileWidth?: number;
   depth?: number;
   delay?: number;
@@ -24,6 +27,8 @@ export function FloatingProduct({
   price,
   top,
   left,
+  mobileTop,
+  mobileLeft,
   width,
   mobileWidth,
   depth = 0.5,
@@ -31,6 +36,7 @@ export function FloatingProduct({
   rotate = 0,
 }: FloatingProductProps) {
   const ref = useRef<HTMLButtonElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const [tx, setTx] = useState(0);
   const [ty, setTy] = useState(0);
   const [active, setActive] = useState(false);
