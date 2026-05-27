@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { CartModal } from "./CartModal";
 import { useCart } from "@/contexts/CartContext";
@@ -144,8 +144,8 @@ export function Header() {
       </header>
 
       {/* ---------------- DESKTOP HEADER ---------------- */}
-      <header className="fixed inset-x-0 top-0 z-40 hidden md:flex items-start justify-between gap-3 px-3 py-3 sm:px-6 sm:py-5 md:px-10 md:py-7">
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4">
+      <header className="fixed inset-x-0 top-0 z-40 hidden md:flex items-start justify-between gap-3 px-3 py-3 sm:px-6 sm:py-5 md:px-10 md:py-7 pointer-events-none">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 pointer-events-auto">
           {/* Logo */}
           <Link
             to="/"

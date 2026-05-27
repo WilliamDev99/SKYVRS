@@ -1,22 +1,8 @@
 import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/Header";
 import { GrainOverlay } from "@/components/GrainOverlay";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "SKYVRS — Contact" },
-      {
-        name: "description",
-        content: "Get in touch with SKYVRS. Send us your questions, order inquiries, and messages.",
-      },
-    ],
-  }),
-  component: ContactPage,
-});
-
-function ContactPage() {
+export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [orderNumber, setOrderNumber] = useState("");
   const [message, setMessage] = useState("");
@@ -80,7 +66,6 @@ function ContactPage() {
       <GrainOverlay />
       <Header />
 
-      {/* Contact Form Card */}
       <div className="flex min-h-screen items-center justify-center px-4 pt-24 pb-12">
         <div
           className="w-full max-w-md rounded-[32px] p-8 sm:p-10"
@@ -92,7 +77,6 @@ function ContactPage() {
             boxShadow: "0 32px 64px rgba(0,0,0,0.15), inset 0 2px 1px rgba(255,255,255,0.7), inset 0 -1px 1px rgba(255,255,255,0.2), inset 0 0 40px rgba(255,255,255,0.15)",
           }}
         >
-          {/* Title */}
           <h1
             className="mb-8 text-lg font-black tracking-[0.25em] text-white sm:text-xl"
             style={{ fontFamily: "'Orbitron', sans-serif" }}
@@ -101,7 +85,6 @@ function ContactPage() {
           </h1>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            {/* Email */}
             <input
               type="email"
               required
@@ -118,7 +101,6 @@ function ContactPage() {
               className="placeholder-white/50"
             />
 
-            {/* Order Number */}
             <input
               type="text"
               placeholder="ORDER NUMBER"
@@ -134,7 +116,6 @@ function ContactPage() {
               className="placeholder-white/50"
             />
 
-            {/* Message */}
             <textarea
               required
               placeholder="MESSAGE..."
@@ -151,7 +132,6 @@ function ContactPage() {
               className="placeholder-white/50"
             />
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="mt-4 w-full rounded-full py-4 text-sm font-bold tracking-[0.25em] text-[#334b5c] transition-all duration-300 hover:opacity-90 active:scale-[0.98]"
@@ -161,7 +141,7 @@ function ContactPage() {
                 boxShadow: "0 8px 24px rgba(0,0,0,0.15), inset 0 2px 2px rgba(255,255,255,1)",
               }}
             >
-              {submitted ? "SENT ✓" : "SUBMIT"}
+              {submitted ? "SENT" : "SUBMIT"}
             </button>
           </form>
         </div>

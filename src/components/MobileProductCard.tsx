@@ -54,7 +54,7 @@ export function MobileProductCard({
       <button
         type="button"
         onClick={onClick}
-        className="group flex flex-col items-center gap-6 outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="group relative z-10 flex flex-col items-center gap-6 outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <motion.div style={{ y, scale }}>
           <div

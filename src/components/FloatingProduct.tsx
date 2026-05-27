@@ -83,7 +83,7 @@ export function FloatingProduct({
       ref={ref}
       type="button"
       aria-label={`${name}, ${price}`}
-      className="group absolute cursor-pointer rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="group absolute z-10 cursor-pointer rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       style={{
         top: resolvedTop,
         left: resolvedLeft,
@@ -96,7 +96,7 @@ export function FloatingProduct({
       onMouseLeave={() => { setActive(false); onHoverChange?.(false); }}
       onFocus={() => { setActive(true); onHoverChange?.(true); }}
       onBlur={() => { setActive(false); onHoverChange?.(false); }}
-      onClick={onClick}
+      onClick={() => { console.log("FloatingProduct clicked!"); onClick?.(); }}
     >
       <div
         className="relative"

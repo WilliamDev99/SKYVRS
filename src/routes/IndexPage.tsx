@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { Header } from "@/components/Header";
 import { FloatingProduct } from "@/components/FloatingProduct";
 import { GrainOverlay } from "@/components/GrainOverlay";
@@ -7,26 +7,7 @@ import { ProductPanel } from "@/components/ProductPanel";
 import { MobileProductCard } from "@/components/MobileProductCard";
 import { useProducts, type Product } from "@/lib/products";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "SKYVRS — Essentials From Above" },
-      {
-        name: "description",
-        content:
-          "SKYVRS essentials. Garment-dyed hoodies, beanies, and sweatpants in lime, iris, and sky.",
-      },
-      { property: "og:title", content: "SKYVRS — Essentials From Above" },
-      {
-        property: "og:description",
-        content: "Floating shop of garment-dyed essentials.",
-      },
-    ],
-  }),
-  component: Shop,
-});
-
-function Shop() {
+export default function IndexPage() {
   const [bgGradient, setBgGradient] = useState("var(--gradient-sky)");
   const [isMobile, setIsMobile] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<{
@@ -37,6 +18,7 @@ function Shop() {
   } | null>(null);
 
   const { data: products = [] } = useProducts();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
@@ -46,10 +28,9 @@ function Shop() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  const navigate = useNavigate();
-
   const selectProduct = (p: Product) => {
-    navigate({ to: "/product", search: { id: p.id } });
+    console.log("Clicked product:", p.id, p.name);
+    navigate(`/product?id=${p.id}`);
   };
 
   return (
@@ -58,12 +39,10 @@ function Shop() {
       style={{ background: bgGradient }}
     >
       <ProductPanel product={selectedProduct} onClose={() => setSelectedProduct(null)} />
-      
       <GrainOverlay />
       <Header />
 
       {isMobile ? (
-        /* ── MOBILE: vertical scroll, one product per screen ── */
         <div className="flex flex-col pb-20 pt-20">
           {products.map((p, i) => (
             <MobileProductCard
@@ -79,7 +58,6 @@ function Shop() {
           ))}
         </div>
       ) : (
-        /* ── DESKTOP & TABLET: scattered collage layout ── */
         <div className="relative min-h-[350vh] w-full overflow-hidden">
           {products.map((p, i) => (
             <FloatingProduct
@@ -103,8 +81,6 @@ function Shop() {
           ))}
         </div>
       )}
-
-
     </main>
   );
 }
