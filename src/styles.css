@@ -80,6 +80,244 @@
       oklch(0.25 0.08 252) 55%,
       oklch(0.18 0.06 255) 100%
     );
+
+  --gradient-lime: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.92 0.21 120) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.85 0.15 130) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.45 0.15 135) 0%,
+      oklch(0.25 0.08 140) 55%,
+      oklch(0.18 0.05 145) 100%
+    );
+
+  --gradient-iris: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.82 0.07 305) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.7 0.1 300) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.4 0.12 290) 0%,
+      oklch(0.25 0.08 280) 55%,
+      oklch(0.18 0.06 270) 100%
+    );
+
+  --gradient-cave: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.45 0.04 60) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.35 0.02 60) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.25 0.02 60) 0%,
+      oklch(0.2 0.02 60) 55%,
+      oklch(0.15 0.02 60) 100%
+    );
+
+  --gradient-black: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.25 0 0) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.18 0 0) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.12 0 0) 0%,
+      oklch(0.08 0 0) 55%,
+      oklch(0.05 0 0) 100%
+    );
+
+  --gradient-pink: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.7 0.15 340) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.6 0.12 340) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.4 0.1 340) 0%,
+      oklch(0.25 0.08 340) 55%,
+      oklch(0.18 0.05 340) 100%
+    );
+
+  --gradient-brown: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.5 0.08 45) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.35 0.06 45) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.25 0.04 45) 0%,
+      oklch(0.2 0.03 45) 55%,
+      oklch(0.15 0.02 45) 100%
+    );
+
+  --gradient-sand: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.95 0.05 85) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.85 0.04 85) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.65 0.03 85) 0%,
+      oklch(0.45 0.03 85) 55%,
+      oklch(0.30 0.02 85) 100%
+    );
+
+  --gradient-pie: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.60 0.22 25) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.50 0.20 25) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.40 0.18 25) 0%,
+      oklch(0.30 0.15 25) 55%,
+      oklch(0.20 0.10 25) 100%
+    );
+
+  --gradient-grass: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.65 0.25 135) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.55 0.22 135) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.45 0.18 135) 0%,
+      oklch(0.35 0.15 135) 55%,
+      oklch(0.25 0.10 135) 100%
+    );
+
+  --gradient-watermelon: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.65 0.20 340) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.35 0.15 135) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.40 0.10 340) 0%,
+      oklch(0.30 0.08 200) 55%,
+      oklch(0.20 0.10 135) 100%
+    );
+
+  --gradient-jelly: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.75 0.20 15) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.65 0.22 5) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.60 0.20 355) 0%,
+      oklch(0.45 0.18 350) 55%,
+      oklch(0.30 0.15 345) 100%
+    );
+
+  --gradient-superblue: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.60 0.22 250) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.50 0.20 250) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.40 0.18 250) 0%,
+      oklch(0.30 0.15 250) 55%,
+      oklch(0.20 0.10 250) 100%
+    );
+
+  --gradient-grey: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.6 0 0) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.5 0 0) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.4 0 0) 0%,
+      oklch(0.3 0 0) 55%,
+      oklch(0.2 0 0) 100%
+    );
+
+  --gradient-white: radial-gradient(
+      ellipse 90% 70% at 75% 95%,
+      oklch(0.85 0.01 250) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      oklch(0.7 0.02 250) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.5 0.03 250) 0%,
+      oklch(0.35 0.04 250) 55%,
+      oklch(0.25 0.05 250) 100%
+    );
 }
 
 @layer base {
@@ -94,5 +332,59 @@
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 16px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #e2e3e5;
+    border-left: 1px solid #a9abb0;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #a9abb0;
+    border: 3px solid #e2e3e5;
+    border-radius: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-button:single-button {
+    background-color: #e2e3e5;
+    display: block;
+    height: 16px;
+    width: 16px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%2352667A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    border-left: 1px solid #a9abb0;
+    border-bottom: 1px solid #a9abb0;
+  }
+  .custom-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%2352667A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    border-left: 1px solid #a9abb0;
+    border-top: 1px solid #a9abb0;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @keyframes blob1 {
+    0% { transform: translate(-20vw, -20vh) scale(1); }
+    33% { transform: translate(60vw, 20vh) scale(1.2); }
+    66% { transform: translate(30vw, 70vh) scale(0.8); }
+    100% { transform: translate(-20vw, -20vh) scale(1); }
+  }
+
+  .animate-blob1 {
+    animation: blob1 30s infinite ease-in-out;
   }
 }

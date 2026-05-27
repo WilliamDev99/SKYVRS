@@ -18,6 +18,8 @@ interface FloatingProductProps {
   depth?: number;
   delay?: number;
   rotate?: number;
+  onHoverChange?: (isHovered: boolean) => void;
+  onClick?: () => void;
 }
 
 export function FloatingProduct({
@@ -34,6 +36,8 @@ export function FloatingProduct({
   depth = 0.5,
   delay = 0,
   rotate = 0,
+  onHoverChange,
+  onClick,
 }: FloatingProductProps) {
   const ref = useRef<HTMLButtonElement>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -70,7 +74,7 @@ export function FloatingProduct({
     return () => window.removeEventListener("mousemove", onMove);
   }, [depth, isCoarse]);
 
-  const mw = mobileWidth ?? Math.round(width * 0.5);
+  const mw = mobileWidth ?? Math.round(width * 0.75);
   const resolvedTop = isMobile && mobileTop ? mobileTop : top;
   const resolvedLeft = isMobile && mobileLeft ? mobileLeft : left;
 
@@ -83,15 +87,16 @@ export function FloatingProduct({
       style={{
         top: resolvedTop,
         left: resolvedLeft,
-        width: `clamp(${mw}px, ${(width / 1440) * 100}vw, ${width}px)`,
+        width: `clamp(${mw}px, ${(width / 1024) * 100}vw, ${width * 1.1}px)`,
         transform: `translate(${tx}px, ${ty}px)`,
         transition: "transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1)",
         animation: `float 7s ease-in-out ${delay}s infinite`,
       }}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-      onFocus={() => setActive(true)}
-      onBlur={() => setActive(false)}
+      onMouseEnter={() => { setActive(true); onHoverChange?.(true); }}
+      onMouseLeave={() => { setActive(false); onHoverChange?.(false); }}
+      onFocus={() => { setActive(true); onHoverChange?.(true); }}
+      onBlur={() => { setActive(false); onHoverChange?.(false); }}
+      onClick={onClick}
     >
       <div
         className="relative"
@@ -112,7 +117,7 @@ export function FloatingProduct({
       </div>
 
       <div
-        className="pointer-events-none absolute left-1/2 top-full mt-2 max-w-[80vw] -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-1 text-[9px] font-medium tracking-[0.2em] text-foreground/95 backdrop-blur-md sm:mt-3 sm:px-3 sm:py-1.5 sm:text-[10px] sm:tracking-[0.25em]"
+        className="pointer-events-none absolute left-1/2 top-full mt-2 max-w-[80vw] -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-bold tracking-[0.1em] text-foreground/95 backdrop-blur-md sm:mt-3 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.1em]"
         style={{
           background:
             "linear-gradient(180deg, oklch(1 0 0 / 0.25) 0%, oklch(1 0 0 / 0.08) 100%)",
